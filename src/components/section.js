@@ -1,10 +1,15 @@
 import * as React from 'react'
-import { section } from './section.module.css'
+import { section, sectionTitle } from './section.module.css'
 
-const Section = ({ darkmode, children }) => {
+const Section = ({ title, children }) => {
     return (
         <div className={section}>
-            {children}
+            <div>
+                <h1 className={sectionTitle}>
+                    {title}
+                </h1>
+                {children}
+            </div>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
+import { blinkingCursor } from './typewritten.module.css'
 
 const random_normal = (mean, variance, skew) => {
     // Draw samples from a normal distribution
@@ -22,6 +23,7 @@ const random_normal = (mean, variance, skew) => {
 const Typewritten = ({ delay, children }) => {
     const [currentText, setCurrentText] = useState('')
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [finished, setFinished] = useState(false)
     
     useEffect(() => {
         let timeout;
@@ -31,12 +33,16 @@ const Typewritten = ({ delay, children }) => {
             setCurrentText(currentText + children[currentIndex])
             setCurrentIndex(currentIndex + 1)
         }, factor * delay)
+        } else {
+            setTimeout(() => setFinished(true), 5000)
         }
-    
         return () => clearTimeout(timeout);
     }, [currentText, currentIndex, children, delay])
-    
-    return <span>{currentText}</span>
+    return (
+    <span className={finished ?'' : blinkingCursor}>
+        {currentText}
+    </span>
+    )
 }
 
 export default Typewritten

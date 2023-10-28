@@ -4,3 +4,7 @@
     min-height: 75vh;
     padding-bottom: 10vh;
 }
+
+.section-title {
+    font-weight: 500;
+}

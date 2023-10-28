@@ -6,12 +6,13 @@ import Typewritten from '../components/typewritten'
 const IndexPage = () => {
   return (
   <Layout>
-    <Section darkmode={true}>
-      <h1>
-        <Typewritten delay={50}>
-          Hello World!
+    <Section title='Hello World!'>
+        <Typewritten delay={25}>
+          This is text with a typewriter effect.
         </Typewritten>
-      </h1>
+    </Section>
+    <Section title='Projects'>
+
     </Section>
   </Layout>)
 }
