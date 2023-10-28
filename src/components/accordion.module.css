@@ -1,0 +1,20 @@
+.accordion {
+ border-top: 3px solid white;
+ min-width: 600px;
+}
+
+.accordion-item {
+    border-bottom: 3px solid white;
+}
+
+.accordion-title {
+    cursor: pointer;
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    padding: 1.3rem 0;
+}
+
+.accordion-content {
+    padding-bottom: 1rem;
+}
