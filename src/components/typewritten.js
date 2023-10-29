@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { blinkingCursor } from './typewritten.module.css'
 
 const random_normal = (mean, variance, skew) => {
@@ -24,24 +24,44 @@ const Typewritten = ({ delay, children }) => {
     const [currentText, setCurrentText] = useState('')
     const [currentIndex, setCurrentIndex] = useState(0)
     const [finished, setFinished] = useState(false)
-    
-    useEffect(() => {
-        let timeout;
+    const domRef = useRef()
+
+    const typewrite = () => {
+        let timeout
         if (currentIndex <= children.length - 1) {
-        let factor = random_normal(1, 2, -1)
-        timeout = setTimeout(() => {
-            setCurrentText(currentText + children[currentIndex])
-            setCurrentIndex(currentIndex + 1)
-        }, factor * delay)
-        } else {
-            setTimeout(() => setFinished(true), 5000)
-        }
-        return () => clearTimeout(timeout);
-    }, [currentText, currentIndex, children, delay])
+            let factor = random_normal(1, 2, -1)
+            timeout = setTimeout(() => {
+                setCurrentText(currentText + children[currentIndex])
+                setCurrentIndex(currentIndex + 1)
+            }, factor * delay)
+        } else setTimeout(() => setFinished(true), 5000)
+    }
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) typewrite()
+          })
+        })
+        observer.observe(domRef.current)
+        return () => observer.unobserve(domRef.current)
+      }, [currentText, currentIndex])
+    
+    // useEffect(() => {
+    //     let timeout
+    //     if (currentIndex <= children.length - 1) {
+    //         let factor = random_normal(1, 2, -1)
+    //         timeout = setTimeout(() => {
+    //             setCurrentText(currentText + children[currentIndex])
+    //             setCurrentIndex(currentIndex + 1)
+    //         }, factor * delay)
+    //     }
+    //     return () => setTimeout(() => setFinished(true), 5000)
+    // }, [currentText, currentIndex])
     return (
-    <span className={finished ?'' : blinkingCursor}>
-        {currentText}
-    </span>
+        <span className={finished ? '' : blinkingCursor} ref={domRef}>
+            {currentText}
+        </span>
     )
 }
 
