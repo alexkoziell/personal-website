@@ -14,10 +14,8 @@ const AccordionItem = ({ title, content }) => {
 
     useEffect(() => {
       const contentElement = domRef.current
-      if (contentElement) {
-        setVisibleHeight(contentElement.scrollHeight)
-      }
-    }, [])
+      if (contentElement) setVisibleHeight(contentElement.scrollHeight)
+    }, [isOpen])
   
     const handleClick = () => {
       setIsOpen(!isOpen)
