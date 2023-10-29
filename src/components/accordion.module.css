@@ -8,11 +8,15 @@
 }
 
 .accordion-title {
+    background-color: #002147;
+    border: none;
+    color: white;
     cursor: pointer;
     display: flex;
     font-size: 1.2rem;
     justify-content: space-between;
     padding: 1.3rem 0;
+    width: 100%;
 }
 
 .accordion-content {

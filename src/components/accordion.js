@@ -4,8 +4,7 @@ import {
     accordion,
     accordionContent,
     accordionItem,
-    accordionTitle,
-    opened
+    accordionTitle
 } from './accordion.module.css'
 
 const AccordionItem = ({ title, content }) => {
@@ -17,9 +16,9 @@ const AccordionItem = ({ title, content }) => {
   
     return (
       <div className={accordionItem}>
-        <div className={accordionTitle} onClick={handleClick}>
+        <button className={accordionTitle} onClick={handleClick}>
             <span>{title}</span><span>{isOpen ? '–' : '+'}</span>
-        </div>
+        </button>
         <div className={accordionContent} style={{ display: isOpen ? 'block' : 'none' }}>
             {content}
         </div>
