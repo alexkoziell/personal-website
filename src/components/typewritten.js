@@ -26,38 +26,25 @@ const Typewritten = ({ delay, children }) => {
     const [finished, setFinished] = useState(false)
     const domRef = useRef()
 
-    const typewrite = () => {
-        let timeout
-        if (currentIndex <= children.length - 1) {
-            let factor = random_normal(1, 2, -1)
-            timeout = setTimeout(() => {
-                setCurrentText(currentText + children[currentIndex])
-                setCurrentIndex(currentIndex + 1)
-            }, factor * delay)
-        } else setTimeout(() => setFinished(true), 5000)
-    }
-
     useEffect(() => {
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver(entries => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) typewrite()
+            if (entry.isIntersecting) {
+                if (currentIndex <= children.length - 1) {
+                    let factor = random_normal(1, 2, -1)
+                    setTimeout(() => {
+                        setCurrentText(currentText + children[currentIndex])
+                        setCurrentIndex(currentIndex + 1)
+                    }, factor * delay)
+                } else setTimeout(() => setFinished(true), 5000)
+            }
           })
         })
-        observer.observe(domRef.current)
-        return () => observer.unobserve(domRef.current)
-      }, [currentText, currentIndex])
-    
-    // useEffect(() => {
-    //     let timeout
-    //     if (currentIndex <= children.length - 1) {
-    //         let factor = random_normal(1, 2, -1)
-    //         timeout = setTimeout(() => {
-    //             setCurrentText(currentText + children[currentIndex])
-    //             setCurrentIndex(currentIndex + 1)
-    //         }, factor * delay)
-    //     }
-    //     return () => setTimeout(() => setFinished(true), 5000)
-    // }, [currentText, currentIndex])
+        const currentDomRef = domRef.current
+        observer.observe(currentDomRef)
+        return () => observer.unobserve(currentDomRef)
+      }, [currentText, currentIndex, children, delay])
+
     return (
         <span className={finished ? '' : blinkingCursor} ref={domRef}>
             {currentText}
