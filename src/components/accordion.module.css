@@ -20,5 +20,6 @@
 }
 
 .accordion-content {
-    padding-bottom: 1rem;
+    transition: height 1s ease-out;
+    overflow-y: hidden;
 }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     accordion,
     accordionContent,
@@ -9,17 +9,27 @@ import {
 
 const AccordionItem = ({ title, content }) => {
     const [isOpen, setIsOpen] = useState(false)
+    const [visibleHeight, setVisibleHeight] = useState(0)
+
+    useEffect(() => {
+      const contentElement = document.querySelector(`.${accordionContent}`);
+      if (contentElement) {
+        setVisibleHeight(contentElement.scrollHeight);
+      }
+    }, []);
   
     const handleClick = () => {
       setIsOpen(!isOpen)
     }
-  
+
     return (
       <div className={accordionItem}>
         <button className={accordionTitle} onClick={handleClick}>
             <span>{title}</span><span>{isOpen ? '–' : '+'}</span>
         </button>
-        <div className={accordionContent} style={{ display: isOpen ? 'block' : 'none' }}>
+        <div className={accordionContent} style={{
+          height: isOpen ? visibleHeight : 0
+          }}>
             {content}
         </div>
       </div>
