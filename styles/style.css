@@ -1,0 +1,127 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+header {
+    width: 100%;
+    background-color: var(--header-background-color);
+    padding: 1em 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+a {
+    color: #4A90E2;
+    text-decoration: none;
+}
+a:hover {
+    color: #F5A623;
+    text-decoration: underline;
+}
+nav {
+    display: flex;
+    justify-content: center;
+}
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 1em;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: none;
+}
+.dark-mode-toggle {
+    margin-right: 1em;
+    cursor: pointer;
+    font-size: 1em;
+    background: none;
+    border: none;
+    color: var(--text-color);
+}
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5em; /* To offset the fixed header */
+}
+h1 {
+    margin: 1.5em 0 0.5em 0;
+}
+p {
+    max-width: 600px;
+    margin: 1em 0;
+}
+footer {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 1em 0;
+    background-color: var(--header-background-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.social-media {
+    margin-bottom: 0.5em;
+}
+.social-media a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 0.5em;
+    font-size: 1.5em;
+}
+.social-media a:hover {
+    color: #F5A623;
+}
+:root {
+    --background-color: #f5f5f5;
+    --text-color: black;
+    --header-background-color: #e0e0e0;
+}
+.dark-mode {
+    --background-color: #002147;
+    --text-color: white;
+    --header-background-color: #001f3f;
+}
+.cv-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Adjusted to account for the nav bar */
+    width: 100vw;
+    padding-top: 60px; /* Push content down */
+}
+.cv-container {
+    max-width: 800px;
+    width: 80%;
+    height: 90%;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+.pdf-link {
+    display: block; /* Makes the link take up the full width, allowing margin to apply all around */
+    margin-bottom: 20px; /* Adds space below the link */
+    text-align: center; /* Optionally centers the link */
+}

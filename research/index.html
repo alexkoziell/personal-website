@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Koziell-Pipe | Research</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/styles/style.css">
+    <!-- Apply dark mode settings. -->
+    <script>
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/research">Research</a>
+            <a href="/cv">CV</a>
+        </nav>
+        <button class="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+    <!-- Content -->
+    <div class="content">
+        <h1>My Research</h1>
+        <section class="research">
+            <!-- Research 1 -->
+            <div class="research">
+                <h2>Research Title 1</h2>
+                <p>Description of Research 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="https://github.com/yourusername/project1" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+            <!-- Research 2 -->
+        </section>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="https://x.com/alexkoziell" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/alex-koziell/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/alexkoziell" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© 2024 Alexander Koziell-Pipe</p>
+        </div>
+    </footer>
+    <!-- Dark mode toggle script -->
+    <script src="/scripts/toggledarkmode.js"></script>
+</body>
+</html>
