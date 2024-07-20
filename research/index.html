@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="/styles/style.css">
     <!-- Apply dark mode settings. -->
     <script>
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.documentElement.classList.add('dark-mode');
-        } else {
+        if (localStorage.getItem('darkMode') === 'disabled') {
             document.documentElement.classList.remove('dark-mode');
+        } else {
+            document.documentElement.classList.add('dark-mode');
         }
     </script>
 </head>
