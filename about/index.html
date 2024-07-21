@@ -131,50 +131,53 @@
     <!-- Image carousel script -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.carousel').forEach(carousel => {
-            const items = carousel.querySelectorAll('.carousel-item');
-            const fullscreenButton = document.getElementById('fullscreen');
-            let currentIndex = 0;
-            let currentImage = items[currentIndex].querySelector('img');
+        const carousel = document.querySelector('.carousel');
+        const items = carousel.querySelectorAll('.carousel-item');
+        const fullscreenButton = document.getElementById('fullscreen');
+        let currentIndex = 0;
+        console.log(localStorage.getItem('carouselPos'));
+        if (localStorage.getItem('carouselPos') != null) {
+            currentIndex = parseInt(localStorage.getItem('carouselPos'));
+        }
+        console.log(currentIndex);
 
-            const showItem = index => {
-                items.forEach((item, i) => {
-                    item.style.display = i === index ? 'block' : 'none';
-                    currentImage = items[currentIndex].querySelector('img');
-                });
-            };
-
-            carousel.querySelector('.next').addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % items.length;
-                showItem(currentIndex);
+        const showItem = index => {
+            localStorage.setItem('carouselPos', index);
+            items.forEach((item, i) => {
+                item.style.display = i === index ? 'block' : 'none';
             });
+        };
 
-            carousel.querySelector('.prev').addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
-                showItem(currentIndex);
-            });
-
+        carousel.querySelector('.next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
             showItem(currentIndex);
+        });
 
-            fullscreenButton.addEventListener('click', function() {
-                if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) { /* Safari */
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) { /* IE11 */
-                        document.msExitFullscreen();
-                    }
-                } else {
-                    if (carousel.requestFullscreen) {
-                        carousel.requestFullscreen();
-                    } else if (carousel.webkitRequestFullscreen) { /* Safari */
-                        carousel.webkitRequestFullscreen();
-                    } else if (carousel.msRequestFullscreen) { /* IE11 */
-                        carousel.msRequestFullscreen();
-                    }
-                };
-            });
+        carousel.querySelector('.prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            showItem(currentIndex);
+        });
+
+        showItem(currentIndex);
+
+        fullscreenButton.addEventListener('click', function() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
+            } else {
+                if (carousel.requestFullscreen) {
+                    carousel.requestFullscreen();
+                } else if (carousel.webkitRequestFullscreen) { /* Safari */
+                    carousel.webkitRequestFullscreen();
+                } else if (carousel.msRequestFullscreen) { /* IE11 */
+                    carousel.msRequestFullscreen();
+                }
+            };
         });
     });
     </script>
