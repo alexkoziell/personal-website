@@ -46,6 +46,47 @@ nav a {
 nav a:hover {
     text-decoration: none;
 }
+.nav {
+    display: flex; /* or however you want to display links on large screens */
+}
+.nav-toggle {
+    display: none; /* Hide button on large screens */
+    background-color: var(--header-background-color); /* Pillbox button color */
+    color: var(--text-color);
+    font-size: 1.5rem;
+    border: none; /* Remove border */
+    padding: 0.4rem 0.6rem; /* Padding for pill shape */
+    margin-left: 0.6rem;
+    border-radius: 20%; /* Rounded edges for pill shape */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    text-align: center; /* Center the text/icon inside the button */
+}
+@media (max-width: 425px) {
+    .nav {
+        display: none; /* Initially hide the navigation on small screens */
+    }
+    nav a {
+        margin: 2rem 0;
+    }
+    .nav-toggle {
+        display: block; /* Show the toggle button on small screens */
+        padding: 0;
+    }
+    .nav-active {
+        display: flex; /* This class will be toggled by JavaScript */
+        background-color: var(--background-color);
+        position: fixed; /* Position it on top of other content */
+        top: 0;
+        left: 0;
+        height: calc(100vh - 60px); /* Adjusted to account for the nav bar */
+        width: 100vw;
+        margin-top: 60px; /* Push content down */
+        z-index: 1000; /* Ensure it's above other content */
+        flex-direction: column; /* Stack the links vertically */
+        justify-content: center; /* Center the links vertically */
+        align-items: center; /* Center the links horizontally */
+    }
+}
 .dark-mode-toggle {
     margin-right: 1em;
     cursor: pointer;
