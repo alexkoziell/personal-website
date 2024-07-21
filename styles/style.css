@@ -76,6 +76,7 @@ footer {
     width: 100%;
     text-align: center;
     font-size: 0.8em;
+    margin-top: 2em;
     padding: 1em 0;
     background-color: var(--header-background-color);
     transition: background-color 0.3s, color 0.3s;
@@ -106,6 +107,49 @@ footer {
     --background-color: #002147;
     --text-color: white;
     --header-background-color: #001f3f;
+}
+.carousel {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.carousel-item {
+    position: relative;
+    display: none; /* Hide all items by default */
+}
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.carousel-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.carousel-button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.carousel-button:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
 .cv-wrapper {
     display: flex;
