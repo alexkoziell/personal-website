@@ -272,7 +272,12 @@ footer {
 }
 .pdf-link {
     display: block;
-    margin-top: 10px; /* Adds space between the link and the nav bar */
     margin-bottom: 20px; /* Adds space between the link and the pdf */
     text-align: center;
+}
+@media only screen and (max-width: 425px) {
+    .pdf-link {
+        margin-top: 15px; /* Add space between the nav bar and the pdf */
+        margin-bottom: 15px;
+    }
 }
