@@ -67,6 +67,7 @@ nav a:hover {
         display: none;
     }
     nav a {
+        font-size: 1.8rem;
         margin: 2rem 0;
     }
     .nav-toggle {
