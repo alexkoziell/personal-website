@@ -82,28 +82,30 @@
         <p>Here is an attempt to summarize the amazing life I am lucky to have had so far in photographs (work in progress):</p>
         <div class="gallery">
             <div class="gallery-item">
-                <img src="/assets/images/gymnastics1.jpg" loading="lazy" alt="Doing a handstand in the Himalayas" onclick="openFullScreen(this, 'Doing a handstand in the Himalayas')">
+                <img src="/assets/images/gymnastics1.jpg" loading="lazy" alt="Doing a handstand in the Himalayas" onclick="openFullScreen(this)">
             </div>
             <div class="gallery-item">
-                <img src="/assets/images/gymnastics2.jpg" loading="lazy" alt="Doing martial arts acrobatics at a Buddhist temple" onclick="openFullScreen(this, 'Performing martial arts at a Buddhist temple')">
+                <img src="/assets/images/gymnastics2.jpg" loading="lazy" alt="Doing martial arts acrobatics at a Buddhist temple" onclick="openFullScreen(this)">
             </div>
             <div class="gallery-item">
-                <img src="/assets/images/skiing1.jpg" loading="lazy" alt="Extreme Skiing" onclick="openFullScreen(this, 'Extreme Skiing')">
+                <img src="/assets/images/skiing1.jpg" loading="lazy" alt="Extreme Skiing" onclick="openFullScreen(this)">
             </div>
             <div class="gallery-item">
-                <img src="/assets/images/skiing2.jpg" loading="lazy" alt="Ski mountaineering" onclick="openFullScreen(this, 'Ski Mountaineering')">
+                <img src="/assets/images/skiing2.jpg" loading="lazy" alt="Ski mountaineering" onclick="openFullScreen(this)">
             </div>
             <div class="gallery-item">
-                <img src="/assets/images/hiking1.jpg" loading="lazy" alt="While hiking in the Alps, a buttefly landed on my hand" onclick="openFullScreen(this, 'Hiking in the Alps')">
+                <img src="/assets/images/hiking1.jpg" loading="lazy" alt="While hiking in the Alps, a buttefly landed on my hand" onclick="openFullScreen(this)">
             </div>
             <div class="gallery-item">
-                <img src="/assets/images/hiking2.jpg" loading="lazy" alt="Hiking in the Alps with doggo" onclick="openFullScreen(this, 'Hiking in the Alps w/ doggo')">
+                <img src="/assets/images/hiking2.jpg" loading="lazy" alt="Hiking in the Alps with doggo" onclick="openFullScreen(this)">
             </div>
             <div id="fullScreenOverlay" class="fullscreen-overlay" onclick="closeFullScreen()">
                 <div class="fullscreen-image-container">
                     <img id="fullScreenImage" class="fullscreen-image" src="" alt="Full Screen Image">
                     <div id="fullScreenCaption" class="fullscreen-caption"></div>
                 </div>
+                <div class="nav-button left" onclick="navigateImage(event, -1)">&#10094;</div>
+                <div class="nav-button right" onclick="navigateImage(event, 1)">&#10095;</div>
             </div>
         </div>
     </div>
@@ -123,20 +125,37 @@
     <script src="/scripts/navbar.js"></script>
     <!-- Image gallery script -->
     <script>
-    function openFullScreen(imageElement, captionText) {
+    function openFullScreen(imageElement) {
         const fullScreenOverlay = document.getElementById('fullScreenOverlay');
         const fullScreenImage = document.getElementById('fullScreenImage');
         const fullScreenCaption = document.getElementById('fullScreenCaption');
 
         fullScreenImage.src = imageElement.src;
-        fullScreenCaption.textContent = captionText;
+        fullScreenCaption.textContent = imageElement.alt;
         fullScreenOverlay.style.display = 'flex';
     }
 
     function closeFullScreen() {
         const fullScreenOverlay = document.getElementById('fullScreenOverlay');
         fullScreenOverlay.style.display = 'none';
-    }  
+    }
+
+    let currentIndex = 0;
+    let images = document.querySelectorAll('.gallery-item img');
+    function navigateImage(event, direction) {
+        event.stopPropagation();
+        currentIndex += direction;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        const fullScreenImage = document.getElementById('fullScreenImage');
+        const fullScreenCaption = document.getElementById('fullScreenCaption');
+
+        fullScreenImage.src = images[currentIndex].src;
+        fullScreenCaption.textContent = images[currentIndex].alt;
+    }
     </script>
 </body>
 </html>
