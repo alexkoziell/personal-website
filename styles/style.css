@@ -267,15 +267,12 @@ footer {
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
 }
-
 .nav-button.left {
     left: 0;
 }
-
 .nav-button.right {
     right: 0;
 }
-
 .nav-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
