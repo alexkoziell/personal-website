@@ -80,38 +80,31 @@
         <p>Outside of my academic and professional pursuits, I am an avid sports enthusiast. I enjoy hiking, skiing, windsurfing, tennis, horsemanship, and gymnastics. One of my proudest athletic achievements is serving as the Men's Captain of the Oxford University Gymnastics team, where I found great joy in helping beginners grow and develop their skills to compete as a part of our team at a national level.</p>
         <p>I am also passionate about education, health and fitness, reading, and learning new languages. I strive to leave a positive, lasting impression on everyone I meet and am committed to making a meaningful impact in all my endeavors.</p>
         <p>Here is an attempt to summarize the amazing life I am lucky to have had so far in photographs (work in progress):</p>
-        <div class="carousel">
-            <div class="carousel-images">
-                <div class="carousel-item">
-                    <img src="/assets/images/gymnastics1.jpg" alt="Doing a handstand in the Himalayas">
-                    <div class="carousel-caption">Doing a handstand in the Himalayas</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/images/gymnastics2.jpg" alt="Doing martial arts acrobatics at a Buddhist temple">
-                    <div class="carousel-caption">Performing martial arts at a Buddhist temple</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/images/skiing1.jpg" alt="Extreme Skiing">
-                    <div class="carousel-caption">Extreme Skiing</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/images/skiing2.jpg" alt="Ski mountaineering">
-                    <div class="carousel-caption">Ski Mountaineering</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/images/hiking1.jpg" alt="While hiking in the Alps, a buttefly landed on my hand">
-                    <div class="carousel-caption">Hiking in the Alps</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/images/hiking2.jpg" alt="Hiking in the Alps with doggo">
-                    <div class="carousel-caption">Hiking in the Alps w/ doggo</div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="/assets/images/gymnastics1.jpg" loading="lazy" alt="Doing a handstand in the Himalayas" onclick="openFullScreen(this, 'Doing a handstand in the Himalayas')">
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/images/gymnastics2.jpg" loading="lazy" alt="Doing martial arts acrobatics at a Buddhist temple" onclick="openFullScreen(this, 'Performing martial arts at a Buddhist temple')">
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/images/skiing1.jpg" loading="lazy" alt="Extreme Skiing" onclick="openFullScreen(this, 'Extreme Skiing')">
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/images/skiing2.jpg" loading="lazy" alt="Ski mountaineering" onclick="openFullScreen(this, 'Ski Mountaineering')">
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/images/hiking1.jpg" loading="lazy" alt="While hiking in the Alps, a buttefly landed on my hand" onclick="openFullScreen(this, 'Hiking in the Alps')">
+            </div>
+            <div class="gallery-item">
+                <img src="/assets/images/hiking2.jpg" loading="lazy" alt="Hiking in the Alps with doggo" onclick="openFullScreen(this, 'Hiking in the Alps w/ doggo')">
+            </div>
+            <div id="fullScreenOverlay" class="fullscreen-overlay" onclick="closeFullScreen()">
+                <div class="fullscreen-image-container">
+                    <img id="fullScreenImage" class="fullscreen-image" src="" alt="Full Screen Image">
+                    <div id="fullScreenCaption" class="fullscreen-caption"></div>
                 </div>
             </div>
-            <div class="carousel-buttons">
-                <button class="carousel-button prev">‹</button>
-                <button class="carousel-button next">›</button>
-            </div>
-            <button id="fullscreen" class="fullscreen-button">⤢</button>
         </div>
     </div>
     <!-- Footer -->
@@ -128,58 +121,22 @@
     </footer>
     <!-- Nav Bar and Dark mode toggle script -->
     <script src="/scripts/navbar.js"></script>
-    <!-- Image carousel script -->
+    <!-- Image gallery script -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.querySelector('.carousel');
-        const items = carousel.querySelectorAll('.carousel-item');
-        const fullscreenButton = document.getElementById('fullscreen');
-        let currentIndex = 0;
-        console.log(localStorage.getItem('carouselPos'));
-        if (localStorage.getItem('carouselPos') != null) {
-            currentIndex = parseInt(localStorage.getItem('carouselPos'));
-        }
-        console.log(currentIndex);
+    function openFullScreen(imageElement, captionText) {
+        const fullScreenOverlay = document.getElementById('fullScreenOverlay');
+        const fullScreenImage = document.getElementById('fullScreenImage');
+        const fullScreenCaption = document.getElementById('fullScreenCaption');
 
-        const showItem = index => {
-            localStorage.setItem('carouselPos', index);
-            items.forEach((item, i) => {
-                item.style.display = i === index ? 'block' : 'none';
-            });
-        };
+        fullScreenImage.src = imageElement.src;
+        fullScreenCaption.textContent = captionText;
+        fullScreenOverlay.style.display = 'flex';
+    }
 
-        carousel.querySelector('.next').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % items.length;
-            showItem(currentIndex);
-        });
-
-        carousel.querySelector('.prev').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            showItem(currentIndex);
-        });
-
-        showItem(currentIndex);
-
-        fullscreenButton.addEventListener('click', function() {
-            if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) { /* Safari */
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) { /* IE11 */
-                    document.msExitFullscreen();
-                }
-            } else {
-                if (carousel.requestFullscreen) {
-                    carousel.requestFullscreen();
-                } else if (carousel.webkitRequestFullscreen) { /* Safari */
-                    carousel.webkitRequestFullscreen();
-                } else if (carousel.msRequestFullscreen) { /* IE11 */
-                    carousel.msRequestFullscreen();
-                }
-            };
-        });
-    });
+    function closeFullScreen() {
+        const fullScreenOverlay = document.getElementById('fullScreenOverlay');
+        fullScreenOverlay.style.display = 'none';
+    }  
     </script>
 </body>
 </html>
