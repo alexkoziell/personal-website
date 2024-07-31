@@ -134,6 +134,7 @@
     <script src="/scripts/navbar.js"></script>
     <!-- Image gallery script -->
     <script>
+    let currentIndex = 0;
     function openFullScreen(imageElement) {
         const fullScreenOverlay = document.getElementById('fullScreenOverlay');
         const fullScreenImage = document.getElementById('fullScreenImage');
@@ -142,6 +143,9 @@
         fullScreenImage.src = imageElement.src;
         fullScreenCaption.textContent = imageElement.alt;
         fullScreenOverlay.style.display = 'flex';
+
+        var parent = imageElement.parentNode.parentNode; 
+        currentIndex = Array.prototype.indexOf.call(parent.children, imageElement.parentNode);
     }
 
     function closeFullScreen() {
@@ -149,7 +153,6 @@
         fullScreenOverlay.style.display = 'none';
     }
 
-    let currentIndex = 0;
     let images = document.querySelectorAll('.gallery-item img');
     function navigateImage(event, direction) {
         event.stopPropagation();
