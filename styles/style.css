@@ -34,6 +34,10 @@ a:hover {
     color: #F5A623;
     text-decoration: underline;
 }
+p strong {
+    color: #F5A623;
+    text-align: center;
+}
 nav {
     display: flex;
     justify-content: center;
